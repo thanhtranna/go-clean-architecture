@@ -35,10 +35,10 @@ func TestUserRepository_FindAll(t *testing.T) {
 		"Normal SQL": {
 			arrange: func(t *testing.T) {
 				u := model.User{ID: 1, Name: "manato", Age: "20"}
-				// c := model.CreditCard{ID: 1, UserID: 1, Number: "111111"}
+				c := model.CreditCard{ID: 1, UserID: 1, Number: "111111"}
 
 				mock.ExpectQuery(regexp.QuoteMeta(`SELECT *`)).WillReturnRows(sqlmock.NewRows([]string{"id", "name", "age"}).AddRow(u.ID, u.Name, u.Age))
-				// mock.ExpectQuery(regexp.QuoteMeta(`SELECT *`)).WillReturnRows(sqlmock.NewRows([]string{"id", "user_id", "number"}).AddRow(c.ID, c.UserID, c.Number))
+				mock.ExpectQuery(regexp.QuoteMeta(`SELECT *`)).WillReturnRows(sqlmock.NewRows([]string{"id", "user_id", "number"}).AddRow(c.ID, c.UserID, c.Number))
 			},
 			assert: func(t *testing.T, u []*model.User, err error) {
 				assert.Nil(t, err)
@@ -49,10 +49,10 @@ func TestUserRepository_FindAll(t *testing.T) {
 		"At the time error SQL": {
 			arrange: func(t *testing.T) {
 				u := model.User{ID: 1, Name: "manato", Age: "20"}
-				// c := model.CreditCard{ID: 1, UserID: 1, Number: "111111"}
+				c := model.CreditCard{ID: 1, UserID: 1, Number: "111111"}
 
 				mock.ExpectQuery(regexp.QuoteMeta(`SELECT *`)).WillReturnRows(sqlmock.NewRows([]string{"id", "name", "age"}).AddRow(u.ID, u.Name, u.Age))
-				// mock.ExpectQuery(regexp.QuoteMeta(`SELECT *`)).WillReturnRows(sqlmock.NewRows([]string{"id", "user_id", "number"}).AddRow(c.ID, c.UserID, c.Number))
+				mock.ExpectQuery(regexp.QuoteMeta(`SELECT *`)).WillReturnRows(sqlmock.NewRows([]string{"id", "user_id", "number"}).AddRow(c.ID, c.UserID, c.Number))
 			},
 			assert: func(t *testing.T, u []*model.User, err error) {
 				//assert.NotEmpty(t, err)
